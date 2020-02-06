@@ -1,0 +1,21 @@
+{
+    "name": "kaishiyoku/laravel-recharts",
+    "description": "A Laravel package for using the Recharts charting Library.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Wiedel",
+            "email": "dev@andreas-wiedel.de",
+            "homepage": "https://andreas-wiedel.de"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kaishiyoku\\LaravelRecharts\\": "src/"
+        }
+    }
+}
