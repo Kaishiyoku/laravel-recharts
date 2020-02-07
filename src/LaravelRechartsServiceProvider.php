@@ -13,11 +13,15 @@ class LaravelRechartsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/Views', 'recharts');
+        $this->loadViewsFrom(__DIR__ . '/Views', 'recharts');
 
         $this->publishes([
-            __DIR__.'/Views' => resource_path('views/vendor/recharts'),
-        ]);
+            __DIR__ . '/../js/dist/' => public_path('vendor/recharts/'),
+        ], 'assets');
+
+        $this->publishes([
+            __DIR__ . '/Views' => resource_path('views/vendor/recharts'),
+        ], 'views');
     }
 
     /**
