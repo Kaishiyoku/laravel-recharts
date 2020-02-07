@@ -5,6 +5,7 @@
         elements: {!! json_encode($elements) !!},
         data: {!! json_encode($data) !!},
         height: {{ $height }},
+        rotateXAxis: {{ json_encode($rotateXAxis) }},
     };
 
     const chart = window.laravelRecharts.{{ $chartComponent }};

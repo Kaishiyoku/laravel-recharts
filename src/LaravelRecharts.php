@@ -31,12 +31,13 @@ class LaravelRecharts
      * @param array $elements
      * @param array $data
      * @param int $height
+     * @param bool $rotateXAxis
      * @return ChartBag
      * @throws \Exception
      */
-    public function makeChart(array $elements, array $data, int $height): ChartBag
+    public function makeChart(array $elements, array $data, int $height, bool $rotateXAxis = false): ChartBag
     {
-        return $this->makeChartAbstract(self::CHART_COMPONENT_NORMAL, $elements, $data, $height);
+        return $this->makeChartAbstract(self::CHART_COMPONENT_NORMAL, $elements, $data, $height, $rotateXAxis);
     }
 
     /**
@@ -92,14 +93,15 @@ class LaravelRecharts
      * @param array $elements
      * @param array $data
      * @param int $height
+     * @param bool $rotateXAxis
      * @return ChartBag
      * @throws \Exception
      */
-    private function makeChartAbstract(string $chartComponent, array $elements, array $data, int $height): ChartBag
+    private function makeChartAbstract(string $chartComponent, array $elements, array $data, int $height, bool $rotateXAxis = false): ChartBag
     {
         $chartId = $this->generateChartId();
         $cdn = View::make('recharts::cdn');
-        $chart = View::make("recharts::chart", compact('chartId', 'chartComponent', 'elements', 'data', 'height'));
+        $chart = View::make("recharts::chart", compact('chartId', 'chartComponent', 'elements', 'data', 'height', 'rotateXAxis'));
 
         $chartBag = new ChartBag($cdn, $chart);
 

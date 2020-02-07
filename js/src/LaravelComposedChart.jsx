@@ -17,6 +17,11 @@ class LaravelComposedChart extends PureComponent {
             })
         ).isRequired,
         height: PropTypes.number.isRequired,
+        rotateXAxis: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        rotateXAxsis: false,
     };
 
     renderLines() {
@@ -42,6 +47,14 @@ class LaravelComposedChart extends PureComponent {
         });
     }
 
+    renderXAxis() {
+        return this.props.rotateXAxis ? (
+            <XAxis dataKey="name" angle={-45} textAnchor="end" height={50} style={{'font-size': '.75rem'}}/>
+        ) : (
+            <XAxis dataKey="name" style={{'font-size': '.75rem'}}/>
+        );
+    }
+
     render() {
         return (
             <ResponsiveContainer width="100%" height={this.props.height}>
@@ -52,10 +65,10 @@ class LaravelComposedChart extends PureComponent {
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="name"/>
+                    {this.renderXAxis()}
                     <YAxis/>
                     <Tooltip/>
-                    <Legend/>
+                    <Legend verticalAlign="top"/>
 
                     {this.renderLines()}
                 </ComposedChart>
