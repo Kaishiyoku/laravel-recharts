@@ -49,9 +49,9 @@ class LaravelComposedChart extends PureComponent {
 
     renderXAxis() {
         return this.props.rotateXAxis ? (
-            <XAxis dataKey="name" angle={-45} textAnchor="end" height={50} style={{'font-size': '.75rem'}}/>
+            <XAxis dataKey="name" angle={-45} textAnchor="end" height={50} style={{fontSize: '.85rem'}}/>
         ) : (
-            <XAxis dataKey="name" style={{'font-size': '.75rem'}}/>
+            <XAxis dataKey="name" style={{fontSize: '.85rem'}}/>
         );
     }
 
@@ -64,7 +64,7 @@ class LaravelComposedChart extends PureComponent {
                         top: 20, right: 20, bottom: 20, left: 20,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3"/>
+                    <CartesianGrid stroke="#ddd"/>
                     {this.renderXAxis()}
                     <YAxis/>
                     <Tooltip/>
