@@ -28,7 +28,17 @@ class LaravelComposedChart extends PureComponent {
 
             const Component = components[chartItem.type];
 
-            return <Component type="monotone" dataKey={chartItem.key} key={chartItem.key} maxBarSize={25} fill={chartItem.color} stroke={chartItem.color}/>
+            return (
+                <Component
+                    type="monotone"
+                    dataKey={chartItem.key}
+                    key={chartItem.key}
+                    maxBarSize={25}
+                    fill={chartItem.color}
+                    stroke={chartItem.color}
+                    strokeWidth={2}
+                />
+            );
         });
     }
 
