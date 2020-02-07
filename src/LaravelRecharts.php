@@ -32,6 +32,20 @@ class LaravelRecharts
     }
 
     /**
+     * @param array $elements
+     * @param array $data
+     * @param int $height
+     * @return \Illuminate\Contracts\View\View
+     * @throws \Exception
+     */
+    public function makeMinimalChart(array $elements, array $data, int $height): \Illuminate\Contracts\View\View
+    {
+        $chartId = 'laravel-rechart-' . Uuid::uuid4()->toString();
+
+        return View::make('recharts::minimal_chart', compact('chartId', 'elements', 'data', 'height'));
+    }
+
+    /**
      * @param string $key
      * @param string $type
      * @param string $color
