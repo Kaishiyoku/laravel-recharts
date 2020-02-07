@@ -18,27 +18,37 @@ class LaravelRecharts
     public const TYPE_BAR = 'bar';
 
     /**
+     * @var string
+     */
+    private const CHART_COMPONENT_NORMAL = 'LaravelComposedChart';
+
+    /**
+     * @var string
+     */
+    private const CHART_COMPONENT_MINIMAL = 'LaravelComposedChart';
+
+    /**
      * @param array $elements
      * @param array $data
      * @param int $height
-     * @return \Illuminate\Contracts\View\View
+     * @return ChartBag
      * @throws \Exception
      */
-    public function makeChart(array $elements, array $data, int $height): \Illuminate\Contracts\View\View
+    public function makeChart(array $elements, array $data, int $height): ChartBag
     {
-        return $this->makeChartAbstract('chart', $elements, $data, $height);
+        return $this->makeChartAbstract(self::CHART_COMPONENT_NORMAL, $elements, $data, $height);
     }
 
     /**
      * @param array $elements
      * @param array $data
      * @param int $height
-     * @return \Illuminate\Contracts\View\View
+     * @return ChartBag
      * @throws \Exception
      */
-    public function makeMinimalChart(array $elements, array $data, int $height): \Illuminate\Contracts\View\View
+    public function makeMinimalChart(array $elements, array $data, int $height): ChartBag
     {
-        return $this->makeChartAbstract('minimal_chart', $elements, $data, $height);
+        return $this->makeChartAbstract(self::CHART_COMPONENT_MINIMAL, $elements, $data, $height);
     }
 
     /**
@@ -78,17 +88,21 @@ class LaravelRecharts
     }
 
     /**
-     * @param string $view
+     * @param string $chartComponent
      * @param array $elements
      * @param array $data
      * @param int $height
-     * @return \Illuminate\Contracts\View\View
+     * @return ChartBag
      * @throws \Exception
      */
-    private function makeChartAbstract(string $view, array $elements, array $data, int $height): \Illuminate\Contracts\View\View
+    private function makeChartAbstract(string $chartComponent, array $elements, array $data, int $height): ChartBag
     {
         $chartId = $this->generateChartId();
+        $cdn = View::make('recharts::cdn');
+        $chart = View::make("recharts::chart", compact('chartId', 'chartComponent', 'elements', 'data', 'height'));
 
-        return View::make("recharts::{$view}", compact('chartId', 'elements', 'data', 'height'));
+        $chartBag = new ChartBag($cdn, $chart);
+
+        return $chartBag;
     }
 }
