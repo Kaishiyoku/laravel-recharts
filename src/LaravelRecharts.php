@@ -26,9 +26,7 @@ class LaravelRecharts
      */
     public function makeChart(array $elements, array $data, int $height): \Illuminate\Contracts\View\View
     {
-        $chartId = 'laravel-rechart-' . Uuid::uuid4()->toString();
-
-        return View::make('recharts::chart', compact('chartId', 'elements', 'data', 'height'));
+        return $this->makeChartAbstract('chart', $elements, $data, $height);
     }
 
     /**
@@ -40,9 +38,7 @@ class LaravelRecharts
      */
     public function makeMinimalChart(array $elements, array $data, int $height): \Illuminate\Contracts\View\View
     {
-        $chartId = 'laravel-rechart-' . Uuid::uuid4()->toString();
-
-        return View::make('recharts::minimal_chart', compact('chartId', 'elements', 'data', 'height'));
+        return $this->makeChartAbstract('minimal_chart', $elements, $data, $height);
     }
 
     /**
@@ -70,5 +66,29 @@ class LaravelRecharts
         return array_merge([
             'name' => $name,
         ], $values);
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    private function generateChartId(): string
+    {
+        return 'laravel-rechart-' . Uuid::uuid4()->toString();
+    }
+
+    /**
+     * @param string $view
+     * @param array $elements
+     * @param array $data
+     * @param int $height
+     * @return \Illuminate\Contracts\View\View
+     * @throws \Exception
+     */
+    private function makeChartAbstract(string $view, array $elements, array $data, int $height): \Illuminate\Contracts\View\View
+    {
+        $chartId = $this->generateChartId();
+
+        return View::make("recharts::{$view}", compact('chartId', 'elements', 'data', 'height'));
     }
 }
