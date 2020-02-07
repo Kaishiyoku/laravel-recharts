@@ -1,2 +1,5 @@
 /.idea
 /vendor/
+dist/
+node_modules/
+src/js/tests/__coverage__/
