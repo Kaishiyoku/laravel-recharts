@@ -25,7 +25,7 @@ class LaravelRecharts
     /**
      * @var string
      */
-    private const CHART_COMPONENT_MINIMAL = 'LaravelComposedChart';
+    private const CHART_COMPONENT_MINIMAL = 'LaravelMinimalComposedChart';
 
     /**
      * @param array $elements
