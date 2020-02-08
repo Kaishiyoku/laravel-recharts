@@ -7,6 +7,8 @@ Table of contents
 Description
 ===========
 
+[Docs](https://kaishiyoku.github.io/laravel-recharts)
+
 With this package you can use the Recharts charting library from your Laravel application.
 No JavaScript knowledge required.
 The main principle is to keep the configuration simple so that you can concentrate on other things.
