@@ -7,4 +7,4 @@
 * Uses its own React dependency so that it won't affect your site
 
 [GitHub](https://github.com/kaishiyoku/laravel-recharts/)
-[Get Started](/?id=installation)
+[Get Started](/?id=laravel-recharts)
