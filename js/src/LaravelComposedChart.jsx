@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {CartesianGrid, ComposedChart, Legend, Line, Bar, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import {CartesianGrid, ComposedChart, Legend, Line, Bar, Area, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import PropTypes from 'prop-types';
 
 class LaravelComposedChart extends PureComponent {
@@ -29,6 +29,7 @@ class LaravelComposedChart extends PureComponent {
             const components = {
                 line: Line,
                 bar: Bar,
+                area: Area,
             };
 
             const Component = components[chartItem.type];

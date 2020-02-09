@@ -20,6 +20,11 @@ class LaravelRecharts
     /**
      * @var string
      */
+    public const TYPE_AREA = 'area';
+
+    /**
+     * @var string
+     */
     private const CHART_COMPONENT_NORMAL = 'LaravelComposedChart';
 
     /**
