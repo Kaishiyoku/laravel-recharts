@@ -114,7 +114,21 @@ Just use the `$laravelRecharts->makeMinimalisticChart()` method.
     
     const minimalisticChart = window.laravelRecharts.LaravelMinimalisticComposedChart;
     const minimalisticContainer = document.getElementById('sample-minimalistic-chart');
-    const minimalisticProps = Object.assign({}, props, {height: 100, width: 200});
+    const minimalisticElements = {
+        elements: [
+            {
+                key: 'User registrations',
+                type: 'bar',
+                color: 'rgba(7, 192, 224, .5)',
+            },
+            {
+                key: 'User posts',
+                type: 'area',
+                color: 'rgba(203, 78, 222, .5)',            
+            },
+        ],
+    };
+    const minimalisticProps = Object.assign({}, props, minimalisticElements, {height: 100, width: 200});
     const MinimalisticComponent = window.laravelRecharts.React.createElement(minimalisticChart, minimalisticProps);
     
     window.laravelRecharts.ReactDOM.render(MinimalisticComponent, minimalisticContainer);

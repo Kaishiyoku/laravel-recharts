@@ -7,5 +7,6 @@
 
   - [Line](line.md)
   - [Bar](bar.md)
+  - [Area](area.md)
 
 - [Changelog](changelog.md)

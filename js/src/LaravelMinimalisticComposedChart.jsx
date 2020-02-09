@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Bar, ComposedChart, Line, ResponsiveContainer} from 'recharts';
+import {Bar, ComposedChart, Line, Area, ResponsiveContainer} from 'recharts';
 import PropTypes from 'prop-types';
 
 class LaravelMinimalisticComposedChart extends PureComponent {
@@ -29,6 +29,7 @@ class LaravelMinimalisticComposedChart extends PureComponent {
             const components = {
                 line: Line,
                 bar: Bar,
+                area: Area,
             };
 
             const Component = components[chartItem.type];
