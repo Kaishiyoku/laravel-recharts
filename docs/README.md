@@ -9,3 +9,7 @@ The library offers composed charts, that means you can mix your charting element
 The project is in a very early stage. At the moment line and bar charts are supported with few configuration options (you can define the basic color of each element).
 
 Later on I plan to add more customization options like customizing the cartesian grid of the chart for example.
+
+## Alpha state
+
+Please keep in mind that this package currently is in alpha state. Breaking changes are very likely.
