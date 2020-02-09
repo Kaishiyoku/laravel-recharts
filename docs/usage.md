@@ -56,6 +56,15 @@ This is possible because the React dependency is being injected into the `window
 
 <div id="sample-chart"></div>
 
+## Minmalistic chart
+
+There is also the ability to create a minimalistic chart without axis and cartesian grid.
+This is useful if you want to render a chart inside text.
+
+Just use the `$laravelRecharts->makeMinimalisticChart()` method.
+
+<div id="sample-minimalistic-chart"></div>
+
 <script type="text/javascript">
     const props = {
         elements: [
@@ -102,4 +111,11 @@ This is possible because the React dependency is being injected into the `window
     const Component = window.laravelRecharts.React.createElement(chart, props);
 
     window.laravelRecharts.ReactDOM.render(Component, container);
+    
+    const minimalisticChart = window.laravelRecharts.LaravelMinimalisticComposedChart;
+    const minimalisticContainer = document.getElementById('sample-minimalistic-chart');
+    const minimalisticProps = Object.assign({}, props, {height: 100, width: 200});
+    const MinimalisticComponent = window.laravelRecharts.React.createElement(minimalisticChart, minimalisticProps);
+    
+    window.laravelRecharts.ReactDOM.render(MinimalisticComponent, minimalisticContainer);
 </script>

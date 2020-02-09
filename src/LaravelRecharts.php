@@ -25,7 +25,7 @@ class LaravelRecharts
     /**
      * @var string
      */
-    private const CHART_COMPONENT_MINIMAL = 'LaravelMinimalComposedChart';
+    private const CHART_COMPONENT_MINIMALISTIC = 'LaravelMinimalisticComposedChart';
 
     /**
      * @param array $elements
@@ -44,12 +44,13 @@ class LaravelRecharts
      * @param array $elements
      * @param array $data
      * @param int $height
+     * @param int $width
      * @return ChartBag
      * @throws \Exception
      */
-    public function makeMinimalChart(array $elements, array $data, int $height): ChartBag
+    public function makeMinimalisticChart(array $elements, array $data, int $height, int $width = null): ChartBag
     {
-        return $this->makeChartAbstract(self::CHART_COMPONENT_MINIMAL, $elements, $data, $height);
+        return $this->makeChartAbstract(self::CHART_COMPONENT_MINIMALISTIC, $elements, $data, $height, $width);
     }
 
     /**
@@ -93,15 +94,16 @@ class LaravelRecharts
      * @param array $elements
      * @param array $data
      * @param int $height
+     * @param int $width
      * @param bool $rotateXAxis
      * @return ChartBag
      * @throws \Exception
      */
-    private function makeChartAbstract(string $chartComponent, array $elements, array $data, int $height, bool $rotateXAxis = false): ChartBag
+    private function makeChartAbstract(string $chartComponent, array $elements, array $data, int $height, int $width = null, bool $rotateXAxis = false): ChartBag
     {
         $chartId = $this->generateChartId();
         $cdn = View::make('recharts::cdn');
-        $chart = View::make("recharts::chart", compact('chartId', 'chartComponent', 'elements', 'data', 'height', 'rotateXAxis'));
+        $chart = View::make("recharts::chart", compact('chartId', 'chartComponent', 'elements', 'data', 'height', 'width', 'rotateXAxis'));
 
         $chartBag = new ChartBag($cdn, $chart);
 

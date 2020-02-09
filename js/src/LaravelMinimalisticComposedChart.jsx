@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react';
-import {CartesianGrid, ComposedChart, Legend, Line, Bar, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import {Bar, ComposedChart, Line, ResponsiveContainer} from 'recharts';
 import PropTypes from 'prop-types';
 
-class LaravelMinimalComposedChart extends PureComponent {
+class LaravelMinimalisticComposedChart extends PureComponent {
     static propTypes = {
         elements: PropTypes.arrayOf(
             PropTypes.exact({
@@ -17,6 +17,11 @@ class LaravelMinimalComposedChart extends PureComponent {
             })
         ).isRequired,
         height: PropTypes.number.isRequired,
+        width: PropTypes.number,
+    };
+
+    static defaultProps = {
+        width: '100%',
     };
 
     renderLines() {
@@ -34,7 +39,7 @@ class LaravelMinimalComposedChart extends PureComponent {
 
     render() {
         return (
-            <ResponsiveContainer width="100%" height={this.props.height}>
+            <ResponsiveContainer width={this.props.width} height={this.props.height}>
                 <ComposedChart
                     data={this.props.data}
                     margin={{
@@ -48,4 +53,4 @@ class LaravelMinimalComposedChart extends PureComponent {
     }
 }
 
-export default LaravelMinimalComposedChart;
+export default LaravelMinimalisticComposedChart;

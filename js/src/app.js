@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import LaravelComposedChart from './LaravelComposedChart';
-import LaravelMinimalComposedChart from './LaravelMinimalComposedChart';
+import LaravelMinimalisticComposedChart from './LaravelMinimalisticComposedChart';
 
 export {
     LaravelComposedChart,
-    LaravelMinimalComposedChart,
+    LaravelMinimalisticComposedChart,
     React,
     ReactDOM,
 };
