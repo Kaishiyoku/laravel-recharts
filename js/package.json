@@ -18,13 +18,13 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-react": "^7.10.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "laravel-mix": "^5.0.4",
     "prop-types": "^15.7.2",
     "recharts": "1.8.5",
     "resolve-url-loader": "^3.1.1",
-    "sass": "^1.26.3",
+    "sass": "^1.26.8",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   }
