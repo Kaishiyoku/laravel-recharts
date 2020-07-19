@@ -21,7 +21,7 @@ class LaravelComposedChart extends PureComponent {
     };
 
     static defaultProps = {
-        rotateXAxsis: false,
+        rotateXAxis: false,
     };
 
     renderLines() {
