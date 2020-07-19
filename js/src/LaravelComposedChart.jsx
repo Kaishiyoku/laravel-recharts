@@ -1,5 +1,16 @@
 import React, {PureComponent} from 'react';
-import {CartesianGrid, ComposedChart, Legend, Line, Bar, Area, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import {
+    Area,
+    Bar,
+    CartesianGrid,
+    ComposedChart,
+    Legend,
+    Line,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis
+} from 'recharts';
 import PropTypes from 'prop-types';
 
 class LaravelComposedChart extends PureComponent {
@@ -24,29 +35,49 @@ class LaravelComposedChart extends PureComponent {
         rotateXAxis: false,
     };
 
-    renderLines() {
-        return this.props.elements.map((chartItem) => {
-            const components = {
-                line: Line,
-                bar: Bar,
-                area: Area,
-            };
+    state = {
+        disabledElements: [],
+    };
 
-            const Component = components[chartItem.type];
+    handleToggleLegendClick = (key) => {
+        const normalizedKey = key.trim();
 
-            return (
-                <Component
-                    type="monotone"
-                    dataKey={chartItem.key}
-                    key={chartItem.key}
-                    maxBarSize={25}
-                    fill={chartItem.color}
-                    stroke={chartItem.color}
-                    strokeWidth={2}
-                />
-            );
-        });
+        const disabledElements = this.state.disabledElements.includes(normalizedKey)
+            ? this.state.disabledElements.filter((line) => line !== normalizedKey)
+            : this.state.disabledElements.concat([normalizedKey]);
+
+        this.setState({disabledElements});
+    };
+
+    renderChartItems() {
+        return this.props.elements.map(this.renderChartItem);
     }
+
+    renderChartItem = (chartItem) => {
+        const {color, key} = chartItem;
+
+        const dataKey = this.state.disabledElements.includes(chartItem.key) ? `${chartItem.key} ` : chartItem.key;
+
+        const components = {
+            line: Line,
+            bar: Bar,
+            area: Area,
+        };
+
+        const Component = components[chartItem.type];
+
+        return (
+            <Component
+                type="monotone"
+                dataKey={dataKey}
+                key={key}
+                maxBarSize={25}
+                fill={color}
+                stroke={color}
+                strokeWidth={2}
+            />
+        );
+    };
 
     renderXAxis() {
         return this.props.rotateXAxis ? (
@@ -56,7 +87,23 @@ class LaravelComposedChart extends PureComponent {
         );
     }
 
+    legendFormatter = (value, entry, index) => {
+        const color = this.state.disabledElements.includes(entry.dataKey.trim()) ? '#999999' : 'inherit';
+
+        return (
+            <a onClick={() => this.handleToggleLegendClick(entry.dataKey)} style={{color}}>
+                {value}
+            </a>
+        );
+    };
+
     render() {
+        const legendPayload = this.props.elements.map((element) => {
+            const {key, color} = element;
+
+            return {key, color};
+        });
+
         return (
             <ResponsiveContainer width="100%" height={this.props.height}>
                 <ComposedChart
@@ -69,9 +116,14 @@ class LaravelComposedChart extends PureComponent {
                     {this.renderXAxis()}
                     <YAxis/>
                     <Tooltip/>
-                    <Legend verticalAlign="top"/>
 
-                    {this.renderLines()}
+                    <Legend
+                        verticalAlign="top"
+
+                        formatter={this.legendFormatter}
+                    />
+
+                    {this.renderChartItems()}
                 </ComposedChart>
             </ResponsiveContainer>
         );
