@@ -1,7 +1,7 @@
 <div id="{{ $chartId }}"></div>
 
 <script type="text/javascript">
-    function withWidth(obj, width = null) {
+    function withWidth{{ $chartSuffix }}(obj, width = null) {
         if (width) {
             return Object.assign(obj, {width});
         }
@@ -9,17 +9,17 @@
         return obj;
     }
 
-    const props = withWidth({
+    const props{{ $chartSuffix }} = withWidth{{ $chartSuffix }}({
         elements: {!! json_encode($elements) !!},
         data: {!! json_encode($data) !!},
         height: {{ $height }},
         rotateXAxis: {{ json_encode($rotateXAxis) }},
     }, {{ $width }});
 
-    const chart = window.laravelRecharts.{{ $chartComponent }};
+    const chart{{ $chartSuffix }} = window.laravelRecharts.{{ $chartComponent }};
 
-    const container = document.getElementById('{{ $chartId }}');
-    const Component = window.laravelRecharts.React.createElement(chart, props);
+    const container{{ $chartSuffix }} = document.getElementById('{{ $chartId }}');
+    const Component{{ $chartSuffix }} = window.laravelRecharts.React.createElement(chart{{ $chartSuffix }}, props{{ $chartSuffix }});
 
-    window.laravelRecharts.ReactDOM.render(Component, container);
+    window.laravelRecharts.ReactDOM.render(Component{{ $chartSuffix }}, container{{ $chartSuffix }});
 </script>
