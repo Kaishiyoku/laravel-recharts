@@ -4,6 +4,7 @@ namespace Kaishiyoku\LaravelRecharts;
 
 use Illuminate\Support\Facades\View;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Str;
 
 class LaravelRecharts
 {
@@ -107,8 +108,9 @@ class LaravelRecharts
     private function makeChartAbstract(string $chartComponent, array $elements, array $data, int $height, int $width = null, bool $rotateXAxis = false): ChartBag
     {
         $chartId = $this->generateChartId();
+        $chartSuffix = Str::camel($chartId);
         $cdn = View::make('recharts::cdn');
-        $chart = View::make("recharts::chart", compact('chartId', 'chartComponent', 'elements', 'data', 'height', 'width', 'rotateXAxis'));
+        $chart = View::make("recharts::chart", compact('chartId', 'chartSuffix', 'chartComponent', 'elements', 'data', 'height', 'width', 'rotateXAxis'));
 
         $chartBag = new ChartBag($cdn, $chart);
 
