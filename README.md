@@ -7,7 +7,7 @@ Table of contents
 Description
 ===========
 
-[➡ Docs ⬅](https://kaishiyoku.github.io/laravel-recharts)
+[📄 Docs](https://kaishiyoku.github.io/laravel-recharts)
 
 **Please keep in mind that this package currently is in alpha state. Breaking changes are very likely.**
 
