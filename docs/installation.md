@@ -1,5 +1,5 @@
 # Installation
 
-Add `"kaishiyoku/laravel-recharts": "^1.0.0"` to your **composer.json** by running `composer require kaishiyoku/laravel-recharts`.
+Add `"kaishiyoku/laravel-recharts": "^0.5.0"` to your **composer.json** by running `composer require kaishiyoku/laravel-recharts`.
 
 Update your dependencies by running `composer update`.
