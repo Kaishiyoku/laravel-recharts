@@ -19,5 +19,12 @@
         "psr-4": {
             "Kaishiyoku\\LaravelRecharts\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kaishiyoku\\LaravelRecharts\\LaravelRechartsServiceProvider"
+            ]
+        }
     }
 }
