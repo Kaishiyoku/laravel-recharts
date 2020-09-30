@@ -1,6 +1,7 @@
 - Getting started
 
   - [Installation](installation.md)
+  - [Upgrading](upgrading.md)
   - [Usage](usage.md)
 
 - Available elements
