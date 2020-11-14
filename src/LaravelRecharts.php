@@ -44,7 +44,7 @@ class LaravelRecharts
      */
     public function makeChart(array $elements, array $data, int $height, string $gridColor = '#ddd', bool $rotateXAxis = false): ChartBag
     {
-        return $this->makeChartAbstract(self::CHART_COMPONENT_NORMAL, $elements, $data, $height, $gridColor, $rotateXAxis);
+        return $this->makeChartAbstract(self::CHART_COMPONENT_NORMAL, $elements, $data, $height, null, $gridColor, $rotateXAxis);
     }
 
     /**
