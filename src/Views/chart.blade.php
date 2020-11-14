@@ -14,6 +14,7 @@
         data: {!! json_encode($data) !!},
         height: {{ $height }},
         rotateXAxis: {{ json_encode($rotateXAxis) }},
+        gridColor: {{ $gridColor }}
     }, {{ $width }});
 
     const chart{{ $chartSuffix }} = window.laravelRecharts.{{ $chartComponent }};

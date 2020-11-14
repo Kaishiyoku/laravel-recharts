@@ -29,10 +29,12 @@ class LaravelComposedChart extends PureComponent {
         ).isRequired,
         height: PropTypes.number.isRequired,
         rotateXAxis: PropTypes.bool,
+        gridColor: PropTypes.string,
     };
 
     static defaultProps = {
         rotateXAxis: false,
+        gridColor: '#ddd',
     };
 
     state = {
@@ -112,7 +114,7 @@ class LaravelComposedChart extends PureComponent {
                         top: 20, right: 20, bottom: 20, left: 20,
                     }}
                 >
-                    <CartesianGrid stroke="#ddd"/>
+                    <CartesianGrid  stroke={this.props.gridColor}/>
                     {this.renderXAxis()}
                     <YAxis/>
                     <Tooltip/>

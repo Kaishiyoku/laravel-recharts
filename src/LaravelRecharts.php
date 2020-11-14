@@ -37,13 +37,14 @@ class LaravelRecharts
      * @param array $elements
      * @param array $data
      * @param int $height
+     * @param string|null $gridColor
      * @param bool $rotateXAxis
      * @return ChartBag
      * @throws \Exception
      */
-    public function makeChart(array $elements, array $data, int $height, bool $rotateXAxis = false): ChartBag
+    public function makeChart(array $elements, array $data, int $height, string $gridColor = null, bool $rotateXAxis = false): ChartBag
     {
-        return $this->makeChartAbstract(self::CHART_COMPONENT_NORMAL, $elements, $data, $height, $rotateXAxis);
+        return $this->makeChartAbstract(self::CHART_COMPONENT_NORMAL, $elements, $data, $height, $gridColor, $rotateXAxis);
     }
 
     /**
@@ -100,17 +101,18 @@ class LaravelRecharts
      * @param array $elements
      * @param array $data
      * @param int $height
-     * @param int $width
+     * @param int|null $width
+     * @param string|null $gridColor
      * @param bool $rotateXAxis
      * @return ChartBag
      * @throws \Exception
      */
-    private function makeChartAbstract(string $chartComponent, array $elements, array $data, int $height, int $width = null, bool $rotateXAxis = false): ChartBag
+    private function makeChartAbstract(string $chartComponent, array $elements, array $data, int $height, int $width = null, string $gridColor = null, bool $rotateXAxis = false): ChartBag
     {
         $chartId = $this->generateChartId();
         $chartSuffix = Str::camel($chartId);
         $cdn = View::make('recharts::cdn');
-        $chart = View::make("recharts::chart", compact('chartId', 'chartSuffix', 'chartComponent', 'elements', 'data', 'height', 'width', 'rotateXAxis'));
+        $chart = View::make("recharts::chart", compact('chartId', 'chartSuffix', 'chartComponent', 'elements', 'data', 'height', 'width', 'gridColor', 'rotateXAxis'));
 
         $chartBag = new ChartBag($cdn, $chart);
 
