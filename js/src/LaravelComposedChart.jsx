@@ -100,12 +100,6 @@ class LaravelComposedChart extends PureComponent {
     };
 
     render() {
-        const legendPayload = this.props.elements.map((element) => {
-            const {key, color} = element;
-
-            return {key, color};
-        });
-
         return (
             <ResponsiveContainer width="100%" height={this.props.height}>
                 <ComposedChart
