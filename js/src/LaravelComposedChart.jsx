@@ -60,6 +60,10 @@ class LaravelComposedChart extends PureComponent {
 
         const dataKey = this.state.disabledElements.includes(chartItem.key) ? `${chartItem.key} ` : chartItem.key;
 
+        if (this.state.disabledElements.includes(chartItem.key)) {
+            return null;
+        }
+
         const components = {
             line: Line,
             bar: Bar,
@@ -90,14 +94,26 @@ class LaravelComposedChart extends PureComponent {
     }
 
     legendFormatter = (value, entry, index) => {
-        const color = this.state.disabledElements.includes(entry.dataKey.trim()) ? '#999999' : 'inherit';
+        const color = this.state.disabledElements.includes(entry.id.trim()) ? '#999999' : 'inherit';
 
         return (
-            <a onClick={() => this.handleToggleLegendClick(entry.dataKey)} style={{color}}>
+            <a onClick={() => this.handleToggleLegendClick(entry.id)} style={{color}}>
                 {value}
             </a>
         );
     };
+
+    getLegendPayload() {
+        return this.props.elements.map(({key, type, color}) => {
+            const legendTypeConverts = {
+                bar: 'square',
+            };
+
+            const legendType = legendTypeConverts[type] || type;
+
+            return {value: key, type: legendType, id: key, color};
+        });
+    }
 
     render() {
         return (
@@ -115,8 +131,8 @@ class LaravelComposedChart extends PureComponent {
 
                     <Legend
                         verticalAlign="top"
-
                         formatter={this.legendFormatter}
+                        payload={this.getLegendPayload()}
                     />
 
                     {this.renderChartItems()}
