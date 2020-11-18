@@ -15,6 +15,7 @@
         height: {{ $height }},
         rotateXAxis: {{ json_encode($rotateXAxis) }},
         gridColor: '{{ $gridColor }}',
+        tooltipBackgroundColor: '{{ $tooltipBackgroundColor }}'
     }, {{ $width }});
 
     const chart{{ $chartSuffix }} = window.laravelRecharts.{{ $chartComponent }};
