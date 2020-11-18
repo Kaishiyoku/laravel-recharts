@@ -29,14 +29,36 @@ class LaravelComposedChart extends PureComponent {
         ).isRequired,
         height: PropTypes.number.isRequired,
         rotateXAxis: PropTypes.bool,
-        gridColor: PropTypes.string,
-        tooltipBackgroundColor: PropTypes.string,
+        isDarkModeEnabled: PropTypes.bool,
     };
 
     static defaultProps = {
         rotateXAxis: false,
-        gridColor: '#ddd',
-        tooltipBackgroundColor: '#fff',
+        enableDarkMode: false,
+    };
+
+    lightModeStyles = {
+        tooltip: {
+            backgroundColor: '#ffffff',
+        },
+        tooltipCursorColor: '#cccccc',
+        gridColor: '#dddddd',
+        legend: {},
+        disabledLegendItemColor: '#999999',
+    };
+
+    darkModeStyles = {
+        tooltip: {
+            borderColor: '#555555',
+            color: '#dddddd',
+            backgroundColor: '#222222',
+        },
+        tooltipCursorColor: '#888888',
+        gridColor: '#555555',
+        legend: {
+            color: '#dddddd',
+        },
+        disabledLegendItemColor: '#888888',
     };
 
     state = {
@@ -96,7 +118,7 @@ class LaravelComposedChart extends PureComponent {
     }
 
     legendFormatter = (value, entry, index) => {
-        const color = this.state.disabledElements.includes(entry.id.trim()) ? '#999999' : 'inherit';
+        const color = this.state.disabledElements.includes(entry.id.trim()) ? this.getThemeStyles().disabledLegendItemColor : 'inherit';
 
         return (
             <a onClick={() => this.handleToggleLegendClick(entry.id)} style={{color}}>
@@ -117,7 +139,13 @@ class LaravelComposedChart extends PureComponent {
         });
     }
 
+    getThemeStyles() {
+        return this.props.isDarkModeEnabled ? this.darkModeStyles : this.lightModeStyles;
+    }
+
     render() {
+        const themeStyles = this.getThemeStyles();
+
         return (
             <ResponsiveContainer width="100%" height={this.props.height}>
                 <ComposedChart
@@ -126,13 +154,14 @@ class LaravelComposedChart extends PureComponent {
                         top: 20, right: 20, bottom: 20, left: 20,
                     }}
                 >
-                    <CartesianGrid  stroke={this.props.gridColor}/>
+                    <CartesianGrid stroke={themeStyles.gridColor}/>
                     {this.renderXAxis()}
                     <YAxis/>
-                    <Tooltip contentStyle={{backgroundColor: this.props.tooltipBackgroundColor}}/>
+                    <Tooltip contentStyle={themeStyles.tooltip} cursor={{stroke: themeStyles.tooltipCursorColor}}/>
 
                     <Legend
                         verticalAlign="top"
+                        wrapperStyle={{paddingBottom: 5, ...themeStyles.legend}}
                         formatter={this.legendFormatter}
                         payload={this.getLegendPayload()}
                     />
