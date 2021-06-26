@@ -12,5 +12,6 @@ mix.autoload({
     'react': ['window.React'],
 });
 
-mix.react('src/app.js', 'dist')
+mix.js('src/app.js', 'dist')
+   .react()
    .setPublicPath('dist');
